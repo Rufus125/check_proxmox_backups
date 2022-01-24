@@ -93,7 +93,10 @@ def parse_days(days: str) -> list:
         if len(days) == 1:
             days = days[0].split('..')
             start = days_of_week.index(days[0])
-            end = days_of_week.index(days[1])
+            if len(days) == 1:
+                end = start
+            else:
+                end = days_of_week.index(days[1])
             if end < start:
                 days = days_of_week[start : ] + days_of_week[ : end+1 ]
             else:
@@ -388,7 +391,7 @@ for i in schedule['data']:
         # sched = 'mon'
         # sched = 'fri..mon'
         # sched = 'mon..fri 03:00'
-
+    	sched = "sun 01:00"
         sched = sched.split(' ')
         if len(sched) == 2:
             days = sched[0]
